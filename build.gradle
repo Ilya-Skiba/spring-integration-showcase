@@ -1,0 +1,38 @@
+buildscript {
+    ext {
+        springBootVersion = '1.4.1.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'spring-boot'
+
+jar {
+    baseName = 'demo-processor'
+    version = '0.0.1-SNAPSHOT'
+}
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-integration'
+    compile 'org.springframework.integration:spring-integration-mail'
+    compile 'org.springframework.integration:spring-integration-twitter'
+    compile 'org.springframework.integration:spring-integration-ftp'
+    compile 'org.springframework.integration:spring-integration-java-dsl:1.2.0.RELEASE'
+    compile('org.projectlombok:lombok')
+    compile('org.springframework.boot:spring-boot-starter-mail')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
