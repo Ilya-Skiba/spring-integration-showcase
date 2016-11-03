@@ -35,6 +35,12 @@ public class FtpConfig {
         return MessageChannels.queue().get();
     }
 
+    @Bean
+    public MessageChannel sendTwitterChannel() {
+        return MessageChannels.queue().get();
+    }
+
+
 
     @Bean
     public IntegrationFlow ftpInboundFlow() {
@@ -55,7 +61,7 @@ public class FtpConfig {
                 .<String, String>route(s -> s.split(":")[0],
                         spec -> spec.prefix("send").suffix("Channel")
                                 .channelMapping("mail", "RawMail")
-                                .channelMapping("tweet", "Tweet")
+                                .channelMapping("tweet", "Twitter")
                                 .resolutionRequired(false)
                                 .defaultOutputChannel("sendSystemOutChannel"))
                 .get();

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:int-twitter="http://www.springframework.org/schema/integration/twitter"
+
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+
+       http://www.springframework.org/schema/integration/twitter
+        http://www.springframework.org/schema/integration/twitter/spring-integration-twitter.xsd">
+    <bean id="twitterTemplate" class="org.springframework.social.twitter.api.impl.TwitterTemplate">
+        <constructor-arg value="${twitter.consumerKey}"/>
+        <constructor-arg value="${twitter.consumerSecret}"/>
+        <constructor-arg value="${twitter.accessToken}"/>
+        <constructor-arg value="${twitter.accessTokenSecret}"/>
+    </bean>
+
+    <int-twitter:outbound-channel-adapter
+            twitter-template="twitterTemplate"
+            channel="sendTwitterChannel"/>
+</beans>
